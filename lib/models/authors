@@ -2,6 +2,7 @@ const pool = require('../utils/pool');
 const { Book } = require('./books');
 
 class Author {
+  id;
   name;
   dob;
   pob;
@@ -20,6 +21,7 @@ class Author {
 }
 
 class AuthorWBook {
+  id;
   name;
   dob;
   pob;
