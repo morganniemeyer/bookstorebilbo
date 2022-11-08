@@ -7,10 +7,12 @@ describe('author routes', () => {
   beforeEach(() => {
     return setup(pool);
   });
+
   it('should return a list of authors', async () => {
     const res = await request(app).get('/authors');
     expect(res.body.length).toEqual(5);
   });
+
   it('should return an author with list of books', async () => {
     const res = await request(app).get('/authors/1');
     expect(res.body).toEqual({
