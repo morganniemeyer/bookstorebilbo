@@ -2,6 +2,7 @@
 -- The SQL in this file will be executed when you run `npm run setup-db`
 DROP TABLE IF EXISTS books;
 DROP TABLE IF EXISTS authors;
+DROP TABLE IF EXISTS correlation;
 
 CREATE TABLE authors (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -14,6 +15,14 @@ CREATE TABLE books (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     title VARCHAR,
     release INT
+);
+
+CREATE TABLE correlation (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    author_id INT,
+    book_id INT,
+    FOREIGN KEY (author_id) REFERENCES authors(id),
+    FOREIGN KEY (book_id) REFERENCES books(id)
 );
 
 INSERT INTO authors(
@@ -41,4 +50,21 @@ VALUES
 ('The Illustrated Man', 1951),
 ('Uglies', 2005),
 ('Peeps', 2005)
+;
+
+INSERT INTO correlation (
+    author_id, book_id
+)
+VALUES
+(1,1),
+(1,2),
+(1,3),
+(2,3),
+(2,4),
+(3,5),
+(3,6),
+(4,7),
+(4,8),
+(5,9),
+(5,10)
 ;
