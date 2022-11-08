@@ -11,6 +11,15 @@ describe('book routes', () => {
     const res = await request(app).get('/books');
     expect(res.body.length).toEqual(10);
   });
+
+  it('should return a book with list of authors', async () => {
+    const res = await request(app).get('/books/1');
+    expect(res.body).toEqual({
+      title: expect.any(String),
+      release: expect.any(String),
+      authors: expect.any(Array),
+    });
+
   afterAll(() => {
     pool.end();
   });
